@@ -1,0 +1,5 @@
+name: Guiapi
+version: '${project.version}'
+main: de.pandadoxo.guiapi.GUI
+api-version: 1.16
+authors: [ Pandadoxo ]
