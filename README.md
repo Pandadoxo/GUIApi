@@ -95,6 +95,9 @@
             menu.addButton(button); // don't forget to actually add the button to the menu
         });
 
+        // fill menu
+        menu.fill(); // Only required if you use .setOnFill
+
         // open the menu
         menu.open();
 
