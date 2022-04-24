@@ -15,6 +15,7 @@
   ```
   
 ## 3. Create Items, Buttons and Menus
+> For further information take a look at [ExampleGuiApi](https://github.com/Pandadoxo/ExampleGuiApi)
 ### GuiItemBuilder
 ```java
     public GuiItem createExampleItem(String name, String[] lore, Material type) {
@@ -104,5 +105,3 @@
         return menu;
     }
 ```
-
-> For further information take a look at [ExampleGuiApi](https://github.com/Pandadoxo/ExampleGuiApi)
