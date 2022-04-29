@@ -26,7 +26,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class GuiItemBuilder {
+public class GuiItemBuilder implements Cloneable{
 
     // item basics
     private Material type;
@@ -339,4 +339,14 @@ public class GuiItemBuilder {
     }
 
 
+    @Override
+    public GuiItemBuilder clone() {
+        try {
+            GuiItemBuilder clone = (GuiItemBuilder) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

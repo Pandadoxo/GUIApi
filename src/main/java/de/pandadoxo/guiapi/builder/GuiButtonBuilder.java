@@ -12,7 +12,7 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Sound;
 import org.bukkit.plugin.Plugin;
 
-public class GuiButtonBuilder {
+public class GuiButtonBuilder implements Cloneable{
 
     // item
     private GuiItem guiItem;
@@ -61,5 +61,16 @@ public class GuiButtonBuilder {
     public GuiButtonBuilder setPitch(int pitch) {
         this.pitch = pitch;
         return this;
+    }
+
+    @Override
+    public GuiButtonBuilder clone() {
+        try {
+            GuiButtonBuilder clone = (GuiButtonBuilder) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

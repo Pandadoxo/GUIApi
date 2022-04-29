@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuiMenuBuilder implements Listener {
+public class GuiMenuBuilder implements Listener, Cloneable {
 
     private final List<GuiButton> buttons = new ArrayList<>();
 
@@ -133,4 +133,14 @@ public class GuiMenuBuilder implements Listener {
         this.onEventListener = listener;
     }
 
+    @Override
+    public GuiMenuBuilder clone() {
+        try {
+            GuiMenuBuilder clone = (GuiMenuBuilder) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }
