@@ -24,6 +24,7 @@ import org.bukkit.plugin.Plugin;
 
 import javax.xml.validation.Validator;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GuiMenu implements Listener {
@@ -282,7 +283,7 @@ public class GuiMenu implements Listener {
         }
 
         // get buttons
-        for (GuiButton button : buttons) {
+        for (GuiButton button : new ArrayList<>(buttons)) {
 
             // is slot
             if (event.getRawSlot() != button.getSlot()) {
