@@ -26,6 +26,11 @@ public abstract class AGuiMenu {
         return inventory;
     }
 
+    public AGuiMenu setInventory(Inventory inventory) {
+        this.inventory = inventory;
+        return this;
+    }
+
     public GuiMenu getParent() {
         return parent;
     }

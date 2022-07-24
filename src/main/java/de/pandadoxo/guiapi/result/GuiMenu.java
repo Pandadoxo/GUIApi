@@ -5,11 +5,9 @@
 ///////////////////////////////
 package de.pandadoxo.guiapi.result;
 
-import de.pandadoxo.guiapi.builder.GuiButtonBuilder;
 import de.pandadoxo.guiapi.builder.GuiItemBuilder;
 import de.pandadoxo.guiapi.interfaces.AGuiMenu;
 import de.pandadoxo.guiapi.interfaces.IEventListener;
-import de.pandadoxo.guiapi.interfaces.PressListener;
 import de.pandadoxo.guiapi.menu.GuiChest;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -18,11 +16,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
-import javax.xml.validation.Validator;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class GuiMenu implements Listener {
     private int maxPage;
     private Runnable onFill;
 
-    public GuiMenu(Plugin plugin, Player player, Class<? extends AGuiMenu> clazz, String title, int size, int curPage, int maxPage, List<GuiButton> buttons, IEventListener.OnEventListener onEventListener,
+    public GuiMenu(Plugin plugin, Player player, Inventory inventory, Class<? extends AGuiMenu> clazz, String title, int size, int curPage, int maxPage, List<GuiButton> buttons, IEventListener.OnEventListener onEventListener,
                    IEventListener.OnClickListener onClickListener, IEventListener.OnDragListener onDragListener, IEventListener.OnCloseListener onCloseListener) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         this.plugin = plugin;
         this.player = player;
@@ -62,6 +63,11 @@ public class GuiMenu implements Listener {
         // set size
         if (this.menuType instanceof GuiChest guiChest) {
             guiChest.setSize(size);
+        }
+
+        // set inventory
+        if(inventory != null) {
+            this.menuType.setInventory(inventory);
         }
 
         // register listener

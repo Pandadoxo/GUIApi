@@ -26,7 +26,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class GuiItemBuilder implements Cloneable{
+public class GuiItemBuilder implements Cloneable {
 
     // item basics
     private Material type;
@@ -348,5 +348,10 @@ public class GuiItemBuilder implements Cloneable{
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }

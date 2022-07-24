@@ -12,6 +12,7 @@ import de.pandadoxo.guiapi.result.GuiMenu;
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
 
 import java.lang.reflect.InvocationTargetException;
@@ -23,6 +24,7 @@ public class GuiMenuBuilder implements Listener, Cloneable {
     private final List<GuiButton> buttons = new ArrayList<>();
 
     private Player player;
+    private Inventory inventory;
     private Class<? extends AGuiMenu> menuType;
     private String title;
     private int size;
@@ -58,7 +60,7 @@ public class GuiMenuBuilder implements Listener, Cloneable {
         Validate.isTrue(menuType != null, "Menu-Type needs to be specified!");
 
         try {
-            return new GuiMenu(plugin, player, menuType, title, size, curPage, maxPage, buttons, onEventListener, onClickListener, onDragListener, onCloseListener);
+            return new GuiMenu(plugin, player, inventory, menuType, title, size, curPage, maxPage, buttons, onEventListener, onClickListener, onDragListener, onCloseListener);
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -68,6 +70,11 @@ public class GuiMenuBuilder implements Listener, Cloneable {
     // setter
     public GuiMenuBuilder setPlayer(Player player) {
         this.player = player;
+        return this;
+    }
+
+    public GuiMenuBuilder setInventory(Inventory inventory) {
+        this.inventory = inventory;
         return this;
     }
 
