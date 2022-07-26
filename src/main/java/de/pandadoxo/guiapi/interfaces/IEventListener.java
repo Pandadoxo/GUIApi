@@ -48,7 +48,9 @@ public class IEventListener {
 
     public static OnCloseListener DefaultOnCloseListener() {
         return (event, menu) -> {
-            menu.destroy();
+            if (!menu.isReOpen()) {
+                menu.destroy();
+            }
         };
     }
 

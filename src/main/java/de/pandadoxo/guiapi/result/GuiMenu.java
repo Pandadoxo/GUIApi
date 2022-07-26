@@ -45,6 +45,8 @@ public class GuiMenu implements Listener {
     private int maxPage;
     private Runnable onFill;
 
+    private boolean reOpen;
+
     public GuiMenu(Plugin plugin, Player player, Inventory inventory, Class<? extends AGuiMenu> clazz, String title, int size, int curPage, int maxPage, List<GuiButton> buttons, IEventListener.OnEventListener onEventListener,
                    IEventListener.OnClickListener onClickListener, IEventListener.OnDragListener onDragListener, IEventListener.OnCloseListener onCloseListener) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         this.plugin = plugin;
@@ -97,10 +99,13 @@ public class GuiMenu implements Listener {
 
     public void update() {
         // recreate inventory
-        this.menuType.create();
+        this.menuType.setInventory(this.menuType.create());
 
         // fill menu
         this.fill();
+
+        // set reopen
+        this.reOpen = true;
 
         // open
         this.open();
@@ -351,5 +356,9 @@ public class GuiMenu implements Listener {
 
     public IEventListener.OnCloseListener getOnCloseListener() {
         return onCloseListener;
+    }
+
+    public boolean isReOpen() {
+        return reOpen;
     }
 }
